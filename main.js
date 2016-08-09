@@ -45,8 +45,8 @@ Main.prototype.initialize = function() {
     if(location.host.indexOf('playcanvas.') > -1){
         fulldomain ='';
         window.playcanvas = true;
-        if(QueryString.presentation === undefined){QueryString.presentation = '/api/assets/4632484/file/asset.json';}
-        if(QueryString.group === undefined){QueryString.group = '/api/assets/4632483/file/asset.json';}
+        if(QueryString.presentation === undefined){QueryString.presentation = '/api/assets/4752751/file/asset.json';}
+        if(QueryString.group === undefined){QueryString.group = '/api/assets/4752755/file/asset.json';}
     }else{
         fulldomain = location.protocol + '//' + location.host + location.pathname;
         window.playcanvas = false;

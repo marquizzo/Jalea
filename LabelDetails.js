@@ -91,7 +91,7 @@ LabelDetails.prototype.prepare = function(playerIndex) {
     ctx.fillRect(0, 0, w, h);
 
     // Write white text
-    ctx.fillStyle = 'white';
+    ctx.fillStyle = '#999999';
     ctx.save();
     ctx.textAlign = 'left';
     ctx.textBaseline = 'top';

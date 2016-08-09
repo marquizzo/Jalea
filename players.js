@@ -91,11 +91,10 @@ Players.prototype.initialize = function() {
                 material.shadingModel = pc.SPECULAR_BLINN;
                 material.diffuseMap = asset.resource;
                 material.emissiveMap = asset.resource;
+                material.emissiveIntensity = 0.5;
                 material.opacityMap = asset.resource;
                 material.blendType = 2;
                 material.opacityMapChannel = 'a';
-//                 material.depthTest = false;
-//                 material.depthWrite = false;
                 material.cull = pc.CULLFACE_NONE; // debug
                 material.update();
                 player.model.model.meshInstances[0].material = material;
