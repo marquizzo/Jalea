@@ -30,6 +30,11 @@ Camera.prototype.initialize = function() {
     this.direction = 1;
     this.rotVelocity = 0;
 
+    // Lens flare control variables
+    this.flareYPos = 0;
+    this.flareAlpha = 1;
+    this.flareRight = false;
+
     // Disabling the context menu stops the browser disabling a menu when
     // you right-click the page
     this.app.mouse.disableContextMenu();
@@ -215,6 +220,8 @@ Camera.prototype.update = function(dt) {
         }
 
         if(window.currentPage == 'TeamPage' || window.currentPage.indexOf('PlayerPage') > -1){
+            this.moveFlare();
+
             var distance = (this.teamLength * 1.1) / window.innerWidth * window.innerHeight;
             distance = distance / (2.0 * Math.tan (0.5 * this.entity.camera.fov * pc.math.DEG_TO_RAD))
 
@@ -245,6 +252,41 @@ Camera.prototype.update = function(dt) {
     }
 };
 
+// Flare moves down screen
+Camera.prototype.moveFlare = function(){
+    if(this.mainScript.lensFlare !== null){
+        this.flareYPos += 0.05;
+        this.mainScript.lensFlare.style.transform = "translateY(" + this.flareYPos + "%)";
+        this.mainScript.lensFlare.style.opacity = this.flareAlpha;
+
+        // Fadeout and reset after it surpasses 70%
+        if(this.flareYPos >= 40){
+            this.flareAlpha -= 0.01;
+            if(this.flareAlpha <= 0){
+                this.resetFlare();
+            }
+        }// Otherwise, flare flickers
+        else{
+            this.flareAlpha = (Math.random() * 0.2) + 0.8;  // from 0.5 - 1.0
+        }
+    }
+}
+
+// Flare resets
+Camera.prototype.resetFlare = function(){
+    if(this.mainScript.lensFlare !== null){
+        this.flareYPos = -20;
+        this.flareAlpha = 1;
+        if(this.flareRight === true){
+            this.flareRight = false;
+            this.mainScript.lensFlare.setAttribute("class", "");
+        }else{
+            this.flareRight = true;
+            this.mainScript.lensFlare.setAttribute("class", "right");
+        }
+    }
+}
+
 // swap method called for script hot-reloading
 // inherit your script state here
 Camera.prototype.swap = function(old) {
@@ -261,6 +303,7 @@ Camera.prototype.setValues = function(teamLength, teamX) {
 
 Camera.prototype.switchPage = function(pageName) {
     window.currentPage = pageName;
+    this.resetFlare();
 
     var entiyPage = this.app.root.findByName(pageName);
     var pagePos = this.app.root.findByName(pageName).getPosition();

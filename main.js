@@ -31,6 +31,7 @@ Main.prototype.initialize = function() {
   this.teamLogo   = null;
   this.teamName   = null;
   this.instruct   = null;
+  this.lensFlare  = null;
   this.loadUI();
   this.camScript = this.entity.findByName("Camera").script.camera;
 
@@ -103,6 +104,7 @@ Main.prototype.loadUI = function(){
 
   this.uiButtons = document.getElementsByClassName("svgArrow");
   this.teamLogo = document.getElementById("logoBox");
+  this.lensFlare = document.getElementById("flare");
   this.teamName = document.getElementById("teamName");
   this.instruct = document.getElementById("teamInstruct");
   this.uiButtons[0].addEventListener("click", this.uiClickPrev.bind(this));
@@ -151,7 +153,10 @@ Main.prototype.deactivateUIArrows = function(){
 }
 
 Main.prototype.initUILogo = function(logoURL, logoText){
+  var flareURL = this.app.assets.get(4791501).getFileUrl();
   this.teamLogo.style.backgroundImage = "url(" + logoURL + ")";
+  this.lensFlare.style.backgroundImage = "url(" + flareURL + ")";
+
   this.teamName.innerHTML = logoText;
   this.deactivateUIArrows();
 }

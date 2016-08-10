@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="ui.css">
+</head>
+<body>
+
+<div id="uiOverlay">
+	<div id="flare"></div>
+	<div id="teamInstruct">Choose a player</div>
+	<div id="logoBox"></div>
+	<div id="teamName"></div>
+	<svg class="svgArrow" id="svgNavPrev" width="50px" height="50px" viewBox="0 0 50 50">
+		<polyline id="arrPrev" class="uiArrow" points="25,40 10,25 25,10 "/>
+		<text id="textPrev" class="uiText" transform="matrix(1 0 0 1 25 29)">Prev.</text>
+	</svg>
+	<svg class="svgArrow" id="svgNavNext" width="50px" height="50px" viewBox="0 0 50 50">
+		<polyline id="arrNext" class="uiArrow" points="25,10 40,25 25,40 "/>
+		<text id="textNext" class="uiText" transform="matrix(1 0 0 1 0 29)">Next</text>
+	</svg>
+	<svg class="svgArrow" id="svgNavTeam" width="50px" height="50px" viewBox="0 0 50 50">
+		<polyline id="arrTeam" class="uiArrow" points="40,25 25,10 10,25 "/>
+		<text id="textTeam" class="uiText" transform="matrix(1 0 0 1 10 40)">Team</text>
+	</svg>
+</div>
+
+</body>
